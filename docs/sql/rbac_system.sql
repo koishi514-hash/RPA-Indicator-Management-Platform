@@ -11,7 +11,7 @@
  Target Server Version : 90001
  File Encoding         : 65001
 
- Date: 13/05/2026 15:04:11
+ Date: 19/05/2026 09:51:10
 */
 
 SET NAMES utf8mb4;
@@ -35,7 +35,7 @@ CREATE TABLE `execution_record`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_execution_id`(`execution_id` ASC) USING BTREE COMMENT '确保执行ID唯一',
   INDEX `idx_task_code`(`task_code` ASC) USING BTREE COMMENT '优化任务维度的执行记录查询'
-) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '任务执行记录表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 57 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '任务执行记录表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of execution_record
@@ -91,6 +91,9 @@ INSERT INTO `execution_record` VALUES (48, '1777253811038', 'TASK+1776150456088'
 INSERT INTO `execution_record` VALUES (49, '1777253815004', 'TASK+1776150456088', 'TEST', '机器人002', 1, '2026-04-27 09:36:55', '2026-04-27 09:36:57', '2秒', '2026-04-27 09:36:55');
 INSERT INTO `execution_record` VALUES (50, '1777253834851', 'TASK+1776150456088', 'TEST', '机器人002', 1, '2026-04-27 09:37:15', '2026-04-27 09:37:17', '1秒', '2026-04-27 09:37:14');
 INSERT INTO `execution_record` VALUES (51, '1777363785637', 'TASK+1776830413730', 'PROCESS_001', '机器人001', 0, '2026-04-28 16:09:46', '2026-04-28 16:09:46', '0秒', '2026-04-28 16:09:46');
+INSERT INTO `execution_record` VALUES (52, '1778725051089', 'TASK+1776150456088', 'TEST', '机器人002', 0, '2026-05-14 10:17:31', '2026-05-14 10:17:41', '9秒', '2026-05-14 10:17:31');
+INSERT INTO `execution_record` VALUES (53, '1778725057507', 'TASK+1776150456088', 'TEST', '机器人002', 0, '2026-05-14 10:17:38', '2026-05-14 10:17:41', '3秒', '2026-05-14 10:17:37');
+INSERT INTO `execution_record` VALUES (54, '1778725074397', 'TASK+1776150456088', 'TEST', '机器人002', 0, '2026-05-14 10:17:54', '2026-05-14 10:17:58', '3秒', '2026-05-14 10:17:54');
 
 -- ----------------------------
 -- Table structure for execution_step
@@ -105,7 +108,7 @@ CREATE TABLE `execution_step`  (
   `execute_time` datetime NOT NULL COMMENT '步骤执行时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_execution_id`(`execution_id` ASC) USING BTREE COMMENT '优化执行维度的步骤查询'
-) ENGINE = InnoDB AUTO_INCREMENT = 152 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '执行步骤日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 157 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '执行步骤日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of execution_step
@@ -261,6 +264,37 @@ INSERT INTO `execution_step` VALUES (148, '1777253834851', '数据解析测试',
 INSERT INTO `execution_step` VALUES (149, '1777253834851', '数据加工测试', 'JAVA', '{\"processingId\": 33}', '2026-04-27 09:37:17');
 INSERT INTO `execution_step` VALUES (150, '1777253834851', '数据完成测试', 'JAVA', '{\"queryId\": 31}', '2026-04-27 09:37:17');
 INSERT INTO `execution_step` VALUES (151, '1777363785637', '未知步骤', '未知类型', 'Error: 未支持的步骤类型: java爬虫代码', '2026-04-28 16:09:46');
+INSERT INTO `execution_step` VALUES (152, '1778725051089', '数据采集测试', 'JAVA', 'Error: javax.script.ScriptException: com.microsoft.playwright.PlaywrightException: Error {\n  message=\'net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n  name=\'Error\n  stack=\'Error: net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n    at FrameSession._navigate (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\chromium\\crPage.js:508:35)\n    at async Frame._gotoAction (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\frames.js:534:28)\n}\nCall log:\n- navigating to \"http://study.zmyfrank.com:18010/spider/#/enterprise-info\", waiting until \"load\"\n', '2026-05-14 10:17:31');
+INSERT INTO `execution_step` VALUES (153, '1778725057507', '数据采集测试', 'JAVA', 'Error: javax.script.ScriptException: com.microsoft.playwright.PlaywrightException: Error {\n  message=\'net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n  name=\'Error\n  stack=\'Error: net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n    at FrameSession._navigate (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\chromium\\crPage.js:508:35)\n    at async Frame._gotoAction (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\frames.js:534:28)\n}\nCall log:\n- navigating to \"http://study.zmyfrank.com:18010/spider/#/enterprise-info\", waiting until \"load\"\n', '2026-05-14 10:17:38');
+INSERT INTO `execution_step` VALUES (154, '1778725074397', '数据采集测试', 'JAVA', 'Error: javax.script.ScriptException: com.microsoft.playwright.PlaywrightException: Error {\n  message=\'net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n  name=\'Error\n  stack=\'Error: net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n    at FrameSession._navigate (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\chromium\\crPage.js:508:35)\n    at async Frame._gotoAction (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\frames.js:534:28)\n}\nCall log:\n- navigating to \"http://study.zmyfrank.com:18010/spider/#/enterprise-info\", waiting until \"load\"\n', '2026-05-14 10:17:54');
+INSERT INTO `execution_step` VALUES (155, '1779070798210', '数据采集测试', 'JAVA', 'Error: javax.script.ScriptException: com.microsoft.playwright.PlaywrightException: Error {\n  message=\'net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n  name=\'Error\n  stack=\'Error: net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n    at FrameSession._navigate (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-346522864364622862\\package\\lib\\server\\chromium\\crPage.js:508:35)\n    at async Frame._gotoAction (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-346522864364622862\\package\\lib\\server\\frames.js:534:28)\n}\nCall log:\n- navigating to \"http://study.zmyfrank.com:18010/spider/#/enterprise-info\", waiting until \"load\"\n', '2026-05-18 10:19:58');
+INSERT INTO `execution_step` VALUES (156, '1779070851678', '数据采集测试', 'JAVA', 'Error: javax.script.ScriptException: com.microsoft.playwright.PlaywrightException: Error {\n  message=\'net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n  name=\'Error\n  stack=\'Error: net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n    at FrameSession._navigate (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-346522864364622862\\package\\lib\\server\\chromium\\crPage.js:508:35)\n    at async Frame._gotoAction (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-346522864364622862\\package\\lib\\server\\frames.js:534:28)\n}\nCall log:\n- navigating to \"http://study.zmyfrank.com:18010/spider/#/enterprise-info\", waiting until \"load\"\n', '2026-05-18 10:20:52');
+
+-- ----------------------------
+-- Table structure for indicator
+-- ----------------------------
+DROP TABLE IF EXISTS `indicator`;
+CREATE TABLE `indicator`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `indicator_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '指标名称',
+  `indicator_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '指标编码（唯一）',
+  `indicator_logic` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '指标逻辑描述',
+  `task_id` bigint NULL DEFAULT NULL COMMENT '关联的任务ID（数据来源）',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `uk_indicator_code`(`indicator_code` ASC) USING BTREE,
+  INDEX `idx_task_id`(`task_id` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '指标表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of indicator
+-- ----------------------------
+INSERT INTO `indicator` VALUES (1, '企业税负率', 'TAX_RATE', '税负率 = 纳税额 / 营业收入 * 100%', 3, '2026-05-15 10:39:19', '2026-05-18 10:22:56');
+INSERT INTO `indicator` VALUES (2, '利润率', 'PROFIT_RATE', '利润率 = 利润 / 营业收入 * 100%', 3, '2026-05-15 10:39:19', '2026-05-18 10:23:48');
+INSERT INTO `indicator` VALUES (3, '营业收入', 'REVENUE', '企业总营业收入', 3, '2026-05-15 10:39:19', '2026-05-18 10:23:52');
+INSERT INTO `indicator` VALUES (4, '近12个月下游销售金额', 'INV_F1_12M_DOWN_SALE_JSHJ_SUM', '统计近12个月下游客户销售发票的含税金额总和', 7, '2026-05-15 10:40:05', '2026-05-15 10:40:04');
+INSERT INTO `indicator` VALUES (5, '近6个月税负率', 'TAX_RATE_6M', '近6个月纳税总额除以近6个月营业收入的百分比', 3, '2026-05-15 10:40:20', '2026-05-15 10:40:19');
 
 -- ----------------------------
 -- Table structure for process
@@ -323,6 +357,32 @@ INSERT INTO `process_step` VALUES (17, 'TEST2', 3, '步骤3', 'java爬虫代码'
 INSERT INTO `process_step` VALUES (19, 'Process-Test', 3, '步骤3', 'java爬虫代码', 'hhjkhkjhjk', '2026-04-28 16:10:09', '2026-04-28 16:10:09', NULL);
 
 -- ----------------------------
+-- Table structure for quota_rule
+-- ----------------------------
+DROP TABLE IF EXISTS `quota_rule`;
+CREATE TABLE `quota_rule`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `quota_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '额度名称',
+  `indicator_codes` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '指标编码列表，逗号分隔',
+  `conditions` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '判断条件，分行存储',
+  `quota_calculation` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '额度计算逻辑',
+  `result_var_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '结果变量名称',
+  `calculated_result` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '计算结果',
+  `output_template` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '输出数据模板',
+  `coze_app_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'Coze应用ID',
+  `coze_api_key` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'Coze API密钥',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '审核规则表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of quota_rule
+-- ----------------------------
+INSERT INTO `quota_rule` VALUES (1, '企业信用额度', 'TAX_RATE,PROFIT_RATE', '税负率 < 5%', 'baseAmount * (1 + profitRate * 0.5 - taxRate * 0.3)', 'creditLimit', '0.00', '{\"companyId\":\"${companyId}\",\"creditLimit\":\"${creditLimit}\",\"status\":\"${status}\"}', NULL, NULL, '2026-05-15 10:39:19', '2026-05-18 10:44:18');
+INSERT INTO `quota_rule` VALUES (2, '企业综合信用额度', 'INV_F1_12M_DOWN_SALE_JSHJ_SUM,TAX_RATE_6M', 'INV_F1_12M_DOWN_SALE_JSHJ_SUM.value > 100000 AND TAX_RATE_6M.value < 5', 'INV_F1_12M_DOWN_SALE_JSHJ_SUM.value * (1 - TAX_RATE_6M.value / 100) * 0.5', 'creditLimit', '0', '{\"status\":\"${status}\",\"creditLimit\":${creditLimit},\"remark\":\"综合信用额度计算完成\"}', '', '', '2026-05-15 10:40:49', '2026-05-18 10:24:56');
+
+-- ----------------------------
 -- Table structure for robot
 -- ----------------------------
 DROP TABLE IF EXISTS `robot`;
@@ -345,7 +405,7 @@ CREATE TABLE `robot`  (
 -- Records of robot
 -- ----------------------------
 INSERT INTO `robot` VALUES (1, 'ROBOT-TEST', 'supperRobot', 'test', 1, NULL, '2026-04-13 09:23:14', '2026-04-13 09:23:14', '2026-04-20 14:23:19', 'dadA');
-INSERT INTO `robot` VALUES (4, '机器人002', '机器人002', 'text', 1, NULL, '2026-04-27 09:37:17', '2026-04-17 16:09:30', '2026-04-27 09:37:17', '213');
+INSERT INTO `robot` VALUES (4, '机器人002', '机器人002', 'text', 1, NULL, '2026-05-18 10:20:55', '2026-04-17 16:09:30', '2026-05-18 10:20:55', '213');
 INSERT INTO `robot` VALUES (5, '机器人003', '机器人003', 'test', 1, NULL, '2026-04-20 10:46:31', '2026-04-20 10:46:31', '2026-04-21 09:24:50', '321');
 INSERT INTO `robot` VALUES (6, '机器人001', '机器人001', 'text', 1, NULL, '2026-04-28 16:09:46', '2026-04-20 10:46:40', '2026-04-28 16:09:46', '213');
 
@@ -371,7 +431,7 @@ CREATE TABLE `rpa_data_collection`  (
   INDEX `idx_tax_no`(`tax_no` ASC) USING BTREE,
   INDEX `idx_status`(`status` ASC) USING BTREE,
   INDEX `idx_collection_time`(`collection_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2021827454116700223 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '数据采集表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2021827454116700228 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '数据采集表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rpa_data_collection
@@ -418,6 +478,11 @@ INSERT INTO `rpa_data_collection` VALUES (2021827454116700219, 3, '91500000MA5U1
 INSERT INTO `rpa_data_collection` VALUES (2021827454116700220, 3, '91500000MA5U123456', '测试企业名24', '{\"enterpriseName\":\"测试企业名24\",\"taxNo\":\"91500000MA5U123456\",\"uscCode\":\"91500000MA5U123456\",\"appDate\":\"2024-02-06\",\"invoices\":[{\"sign\":\"销项\",\"state\":\"正常\",\"invoiceTime\":\"2024-01-15 10:30:00\",\"jshjText\":\"123,456.79\"},{\"sign\":\"销项\",\"state\":\"正常\",\"invoiceTime\":\"2024-02-20 14:20:00\",\"jshjText\":\"234,567.89\"},{\"sign\":\"销项\",\"state\":\"正常\",\"invoiceTime\":\"2024-03-10 09:15:00\",\"jshjText\":\"345,678.90\"},{\"sign\":\"进项\",\"state\":\"正常\",\"invoiceTime\":\"2024-01-25 16:45:00\",\"jshjText\":\"456,789.01\"},{\"sign\":\"销项\",\"state\":\"异常\",\"invoiceTime\":\"2024-04-05 11:00:00\",\"jshjText\":\"567,890.12\"}]}', 'spider_web', '2026-04-27 09:36:51', 'parsed', NULL, 0, '2026-04-27 09:36:52', '2026-04-27 09:36:52');
 INSERT INTO `rpa_data_collection` VALUES (2021827454116700221, 3, '91500000MA5U123456', '测试企业名24', '{\"enterpriseName\":\"测试企业名24\",\"taxNo\":\"91500000MA5U123456\",\"uscCode\":\"91500000MA5U123456\",\"appDate\":\"2024-02-06\",\"invoices\":[{\"sign\":\"销项\",\"state\":\"正常\",\"invoiceTime\":\"2024-01-15 10:30:00\",\"jshjText\":\"123,456.79\"},{\"sign\":\"销项\",\"state\":\"正常\",\"invoiceTime\":\"2024-02-20 14:20:00\",\"jshjText\":\"234,567.89\"},{\"sign\":\"销项\",\"state\":\"正常\",\"invoiceTime\":\"2024-03-10 09:15:00\",\"jshjText\":\"345,678.90\"},{\"sign\":\"进项\",\"state\":\"正常\",\"invoiceTime\":\"2024-01-25 16:45:00\",\"jshjText\":\"456,789.01\"},{\"sign\":\"销项\",\"state\":\"异常\",\"invoiceTime\":\"2024-04-05 11:00:00\",\"jshjText\":\"567,890.12\"}]}', 'spider_web', '2026-04-27 09:36:55', 'parsed', NULL, 0, '2026-04-27 09:36:56', '2026-04-27 09:36:56');
 INSERT INTO `rpa_data_collection` VALUES (2021827454116700222, 3, '91500000MA5U123456', '测试企业名24', '{\"enterpriseName\":\"测试企业名24\",\"taxNo\":\"91500000MA5U123456\",\"uscCode\":\"91500000MA5U123456\",\"appDate\":\"2024-02-06\",\"invoices\":[{\"sign\":\"销项\",\"state\":\"正常\",\"invoiceTime\":\"2024-01-15 10:30:00\",\"jshjText\":\"123,456.79\"},{\"sign\":\"销项\",\"state\":\"正常\",\"invoiceTime\":\"2024-02-20 14:20:00\",\"jshjText\":\"234,567.89\"},{\"sign\":\"销项\",\"state\":\"正常\",\"invoiceTime\":\"2024-03-10 09:15:00\",\"jshjText\":\"345,678.90\"},{\"sign\":\"进项\",\"state\":\"正常\",\"invoiceTime\":\"2024-01-25 16:45:00\",\"jshjText\":\"456,789.01\"},{\"sign\":\"销项\",\"state\":\"异常\",\"invoiceTime\":\"2024-04-05 11:00:00\",\"jshjText\":\"567,890.12\"}]}', 'spider_web', '2026-04-27 09:37:15', 'parsed', NULL, 0, '2026-04-27 09:37:16', '2026-04-27 09:37:16');
+INSERT INTO `rpa_data_collection` VALUES (2021827454116700223, 3, NULL, '测试企业名24', NULL, 'spider_web', '2026-05-14 10:17:32', 'failed', 'Error {\n  message=\'net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n  name=\'Error\n  stack=\'Error: net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n    at FrameSession._navigate (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\chromium\\crPage.js:508:35)\n    at async Frame._gotoAction (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\frames.js:534:28)\n}\nCall log:\n- navigating to \"http://study.zmyfrank.com:18010/spider/#/enterprise-info\", waiting until \"load\"\n', 0, '2026-05-14 10:17:40', '2026-05-14 10:17:40');
+INSERT INTO `rpa_data_collection` VALUES (2021827454116700224, 3, NULL, '测试企业名24', NULL, 'spider_web', '2026-05-14 10:17:38', 'failed', 'Error {\n  message=\'net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n  name=\'Error\n  stack=\'Error: net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n    at FrameSession._navigate (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\chromium\\crPage.js:508:35)\n    at async Frame._gotoAction (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\frames.js:534:28)\n}\nCall log:\n- navigating to \"http://study.zmyfrank.com:18010/spider/#/enterprise-info\", waiting until \"load\"\n', 0, '2026-05-14 10:17:41', '2026-05-14 10:17:41');
+INSERT INTO `rpa_data_collection` VALUES (2021827454116700225, 3, NULL, '测试企业名24', NULL, 'spider_web', '2026-05-14 10:17:54', 'failed', 'Error {\n  message=\'net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n  name=\'Error\n  stack=\'Error: net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n    at FrameSession._navigate (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\chromium\\crPage.js:508:35)\n    at async Frame._gotoAction (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-9373102923678772189\\package\\lib\\server\\frames.js:534:28)\n}\nCall log:\n- navigating to \"http://study.zmyfrank.com:18010/spider/#/enterprise-info\", waiting until \"load\"\n', 0, '2026-05-14 10:17:58', '2026-05-14 10:17:58');
+INSERT INTO `rpa_data_collection` VALUES (2021827454116700226, 3, NULL, '测试企业名24', NULL, 'spider_web', '2026-05-18 10:19:59', 'failed', 'Error {\n  message=\'net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n  name=\'Error\n  stack=\'Error: net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n    at FrameSession._navigate (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-346522864364622862\\package\\lib\\server\\chromium\\crPage.js:508:35)\n    at async Frame._gotoAction (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-346522864364622862\\package\\lib\\server\\frames.js:534:28)\n}\nCall log:\n- navigating to \"http://study.zmyfrank.com:18010/spider/#/enterprise-info\", waiting until \"load\"\n', 0, '2026-05-18 10:20:06', '2026-05-18 10:20:06');
+INSERT INTO `rpa_data_collection` VALUES (2021827454116700227, 7, NULL, 'cq', NULL, 'spider_web', '2026-05-18 10:20:52', 'failed', 'Error {\n  message=\'net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n  name=\'Error\n  stack=\'Error: net::ERR_CONNECTION_REFUSED at http://study.zmyfrank.com:18010/spider/#/enterprise-info\n    at FrameSession._navigate (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-346522864364622862\\package\\lib\\server\\chromium\\crPage.js:508:35)\n    at async Frame._gotoAction (C:\\Users\\42845\\AppData\\Local\\Temp\\playwright-java-346522864364622862\\package\\lib\\server\\frames.js:534:28)\n}\nCall log:\n- navigating to \"http://study.zmyfrank.com:18010/spider/#/enterprise-info\", waiting until \"load\"\n', 0, '2026-05-18 10:20:54', '2026-05-18 10:20:54');
 
 -- ----------------------------
 -- Table structure for rpa_data_parsing
@@ -607,7 +672,7 @@ CREATE TABLE `sys_resource`  (
   UNIQUE INDEX `uk_resource_code`(`resource_code` ASC) USING BTREE,
   INDEX `idx_parent_id`(`parent_id` ASC) USING BTREE,
   INDEX `idx_path`(`path` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '系统资源表（菜单/权限点，支持树形结构）' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '系统资源表（菜单/权限点，支持树形结构）' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_resource
@@ -642,6 +707,9 @@ INSERT INTO `sys_resource` VALUES (27, 'RPA_DATA_ANALYSIS', '数据分析', 1, 4
 INSERT INTO `sys_resource` VALUES (28, 'RPA_DATA_PROCESSING', '数据处理', 1, 4, '/rpa/data/processing', 'processing', 42, 1, '2026-03-24 15:49:17', NULL);
 INSERT INTO `sys_resource` VALUES (29, 'RPA_DATA_QUERY', '数据查询', 1, 4, '/rpa/data/query', 'search', 43, 1, '2026-03-24 15:49:17', NULL);
 INSERT INTO `sys_resource` VALUES (30, 'SYSTEM_PROFILE', '个人资料', 1, 2, '/system/profile', 'profile', 3, 1, '2026-03-24 15:49:17', NULL);
+INSERT INTO `sys_resource` VALUES (58, 'INDICATOR', '指标管理', 1, 0, '/indicator', 'indicator', 3, 1, '2026-05-18 09:27:52', NULL);
+INSERT INTO `sys_resource` VALUES (59, 'INDICATOR_CALCULATION', '指标计算', 1, 58, '/indicator/calculation', 'calculator', 0, 1, '2026-05-18 09:27:52', '2026-05-18 09:48:56');
+INSERT INTO `sys_resource` VALUES (60, 'INDICATOR_AUDIT', '指标审核', 1, 58, '/indicator/audit', 'audit', 1, 1, '2026-05-18 09:27:52', '2026-05-18 09:53:50');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -680,7 +748,7 @@ CREATE TABLE `sys_role_resource`  (
   UNIQUE INDEX `uk_role_resource`(`role_id` ASC, `resource_id` ASC) USING BTREE,
   INDEX `idx_role_id`(`role_id` ASC) USING BTREE,
   INDEX `idx_resource_id`(`resource_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 326 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '角色-资源（权限）关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 388 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '角色-资源（权限）关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role_resource
@@ -772,6 +840,12 @@ INSERT INTO `sys_role_resource` VALUES (322, 8, 27, '2026-04-01 16:27:17');
 INSERT INTO `sys_role_resource` VALUES (323, 8, 28, '2026-04-01 16:27:17');
 INSERT INTO `sys_role_resource` VALUES (324, 8, 29, '2026-04-01 16:27:17');
 INSERT INTO `sys_role_resource` VALUES (325, 8, 30, '2026-04-01 16:27:17');
+INSERT INTO `sys_role_resource` VALUES (382, 1, 58, '2026-05-18 09:27:52');
+INSERT INTO `sys_role_resource` VALUES (383, 1, 60, '2026-05-18 09:27:52');
+INSERT INTO `sys_role_resource` VALUES (384, 1, 59, '2026-05-18 09:27:52');
+INSERT INTO `sys_role_resource` VALUES (385, 2, 58, '2026-05-18 09:27:52');
+INSERT INTO `sys_role_resource` VALUES (386, 2, 60, '2026-05-18 09:27:52');
+INSERT INTO `sys_role_resource` VALUES (387, 2, 59, '2026-05-18 09:27:52');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -799,7 +873,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 'admin', '超级管理员', '$2a$12$oEFW9Ts12Ph3zuMk./HpPOZV2JjRK9gYdf1SCTD3y7.reL0qr0ZKC', 'admin@dawdWdcom.com', '13801110003', 'https://ui-avatars.com/api/?name=Operator&background=67C23A&color=fff', 1, 'ADMIN', '2026-03-23 15:37:45', '2026-04-01 15:13:36', '2026-05-13 14:32:46');
+INSERT INTO `sys_user` VALUES (1, 'admin', '超级管理员', '$2a$12$oEFW9Ts12Ph3zuMk./HpPOZV2JjRK9gYdf1SCTD3y7.reL0qr0ZKC', 'admin@dawdWdcom.com', '13801110003', 'https://ui-avatars.com/api/?name=Operator&background=67C23A&color=fff', 1, 'ADMIN', '2026-03-23 15:37:45', '2026-04-01 15:13:36', '2026-05-18 11:59:07');
 INSERT INTO `sys_user` VALUES (2, 'operator', '业务操作员', '$2a$12$jG5RZ/l6Ce9z0nOYka.8SuAhUPsu8xGTP1St.ZWJP4VBXJahu57SK', 'operator@company.com', '13800000001', 'https://ui-avatars.com/api/?name=Operator&background=67C23A&color=fff', 1, 'OPERATOR', '2026-03-23 15:37:45', '2026-04-01 15:12:51', '2026-04-22 11:27:34');
 INSERT INTO `sys_user` VALUES (3, 'viewer', '普通用户', '$2a$12$jG5RZ/l6Ce9z0nOYka.8SuAhUPsu8xGTP1St.ZWJP4VBXJahu57SK', 'viewer@company.com', '13800000002', 'https://ui-avatars.com/api/?name=Viewer&background=E6A23C&color=fff', 1, 'VIEWER', '2026-03-23 15:37:45', '2026-03-23 17:21:58', '2026-04-27 09:39:50');
 INSERT INTO `sys_user` VALUES (11, 'zz', 'zzzxlzz', '$2a$12$NyZNwaK97NOhHtwOI5NW6eKSK6zyZGtTGBDr//yqvnpBbjn4Hsace', '123@qq.com', '13800138001', NULL, 1, 'ADMIN', '2026-03-30 15:06:13', '2026-03-30 15:20:51', NULL);
@@ -857,9 +931,9 @@ CREATE TABLE `task`  (
 -- ----------------------------
 -- Records of task
 -- ----------------------------
-INSERT INTO `task` VALUES (3, 'TASK+1776150456088', '爬虫测试1', '11112', '测试企业名24', 'TEST', '机器人002', 2, '2026-04-14 15:07:36', '2026-04-27 09:37:15', '2026-04-27 09:37:17', '测试爬虫代码xxx', 5);
+INSERT INTO `task` VALUES (3, 'TASK+1776150456088', '爬虫测试1', '11112', '测试企业名24', 'TEST', '机器人002', 3, '2026-04-14 15:07:36', '2026-05-18 10:19:58', '2026-05-18 10:20:07', '测试爬虫代码xxx', 5);
 INSERT INTO `task` VALUES (4, 'TASK+1776216210669', '错误测试', '1111', '测试企业名2', 'TEST2', 'ROBOT-TEST', 3, '2026-04-15 09:23:31', '2026-04-20 14:12:04', '2026-04-20 14:12:07', '测试代码发生错误', 2);
-INSERT INTO `task` VALUES (7, 'TASK+1776418483248', 'text', '12345687', 'cq', 'TEST', '机器人002', 2, '2026-04-17 17:34:43', '2026-04-27 09:35:49', '2026-04-27 09:35:51', '213', 5);
+INSERT INTO `task` VALUES (7, 'TASK+1776418483248', 'text', '12345687', 'cq', 'TEST', '机器人002', 3, '2026-04-17 17:34:43', '2026-05-18 10:20:52', '2026-05-18 10:20:55', '213', 5);
 INSERT INTO `task` VALUES (8, 'TASK+1776651256325', 'DAWDA', '91500000MA50123456', 'WDAWD', 'TEST2', '机器人002', 3, '2026-04-20 10:14:16', '2026-04-27 09:35:10', '2026-04-27 09:35:12', 'dADAD', 6);
 INSERT INTO `task` VALUES (10, 'TASK+1776830413730', 'MNNNN', '1111', 'WDAWD', 'PROCESS_001', '机器人001', 3, '2026-04-22 12:00:14', '2026-04-28 16:09:46', '2026-04-28 16:09:46', NULL, 1);
 INSERT INTO `task` VALUES (11, 'TASK+1777254429393', 'text3', '1234568745', 'cq', 'TEST', 'ROBOT-TEST', 0, '2026-04-27 09:47:09', NULL, NULL, '123', 5);
